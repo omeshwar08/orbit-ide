@@ -22,7 +22,7 @@ export default function Home() {
 				refine your code effortlessly, all within one powerful workspace.
 			</p>
 			<Link href={"/dashboard"}>
-				<Button variant={"brand"} className="mb-4" size={"lg"}>
+				<Button variant={"brand"} className="mb-4 cursor-pointer" size={"lg"}>
 					Get Started
 					<ArrowUpRight className="w-3.5 h-3.5" />
 				</Button>
