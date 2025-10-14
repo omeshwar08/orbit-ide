@@ -7,7 +7,11 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
+import {
+	ResizableHandle,
+	ResizablePanel,
+	ResizablePanelGroup,
+} from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -22,17 +26,18 @@ import { TemplateFileTree } from "@/modules/playground/components/playground-exp
 import { useFileExplorer } from "@/modules/playground/hooks/useFileExplorer";
 import { usePlayground } from "@/modules/playground/hooks/usePlayground";
 import { TemplateFile } from "@/modules/playground/lib/path-to-json";
+import WebContainerPreview from "@/modules/webcontainers/components/webcontainer-preview";
+import { useWebContainer } from "@/modules/webcontainers/hooks/useWebContainer";
 import { Bot, FileText, Save, Settings, X } from "lucide-react";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
 const MainPlaygroundPage = () => {
 	const { id } = useParams<{ id: string }>();
+	const [isPreviewVisible, setIsPreviewVisible] = useState(false);
 
 	const { playgroundData, templateData, isLoading, error, saveTemplateData } =
 		usePlayground(id);
-
-	const [isPreviewVisible, setIsPreviewVisible] = useState(false);
 
 	const {
 		setTemplateData,
@@ -45,6 +50,15 @@ const MainPlaygroundPage = () => {
 		openFile,
 		openFiles,
 	} = useFileExplorer();
+
+	const {
+		serverUrl,
+		isLoading: containerLoading,
+		error: containerError,
+		instance,
+		writeFileSync,
+		// @ts-ignore
+	} = useWebContainer({ templateData });
 
 	useEffect(() => {
 		setPlaygroundId(id);
@@ -82,16 +96,18 @@ const MainPlaygroundPage = () => {
 					<header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
 						<SidebarTrigger className="-ml-1" />
 						<Separator orientation="vertical" className="mr-2 h-4" />
+
 						<div className="flex flex-1 items-center gap-2">
 							<div className="flex flex-col flex-1">
 								<h1 className="text-sm font-medium">
 									{playgroundData?.title || "Code Playground"}
 								</h1>
+								<p className="text-xs text-muted-foreground">
+									{openFiles.length} File(s) Open
+									{hasUnsavedChanges && " • Unsaved changes"}
+								</p>
 							</div>
-							<p className="text-xs text-muted-foreground">
-								{openFiles.length} File(s) Open
-								{hasUnsavedChanges && " - Unsaved changes"}
-							</p>
+
 							<div className="flex items-center gap-1">
 								<Tooltip>
 									<TooltipTrigger>
@@ -104,7 +120,7 @@ const MainPlaygroundPage = () => {
 											<Save className="h-4 w-4" />
 										</Button>
 									</TooltipTrigger>
-									<TooltipContent>Save (Ctrl + S)</TooltipContent>
+									<TooltipContent>Save (Ctrl+S)</TooltipContent>
 								</Tooltip>
 
 								<Tooltip>
@@ -118,7 +134,7 @@ const MainPlaygroundPage = () => {
 											<Save className="h-4 w-4" /> All
 										</Button>
 									</TooltipTrigger>
-									<TooltipContent>Save All (Ctrl + Shift +S)</TooltipContent>
+									<TooltipContent>Save All (Ctrl+Shift+S)</TooltipContent>
 								</Tooltip>
 
 								<Button variant={"default"} size={"icon"}>
@@ -146,6 +162,7 @@ const MainPlaygroundPage = () => {
 							</div>
 						</div>
 					</header>
+
 					<div className="h-[calc(100vh-4rem)]">
 						{openFiles.length > 0 ? (
 							<div className="h-full flex flex-col">
@@ -183,6 +200,7 @@ const MainPlaygroundPage = () => {
 													</TabsTrigger>
 												))}
 											</TabsList>
+
 											{openFiles.length > 1 && (
 												<Button
 													size="sm"
@@ -208,6 +226,23 @@ const MainPlaygroundPage = () => {
 												onContentChange={() => {}}
 											/>
 										</ResizablePanel>
+
+										{isPreviewVisible && (
+											<>
+												<ResizableHandle />
+												<ResizablePanel defaultSize={50}>
+													<WebContainerPreview
+														templateData={templateData}
+														instance={instance}
+														writeFileSync={writeFileSync}
+														isLoading={containerLoading}
+														error={containerError}
+														serverUrl={serverUrl!}
+														forceResetup={false}
+													/>
+												</ResizablePanel>
+											</>
+										)}
 									</ResizablePanelGroup>
 								</div>
 							</div>
