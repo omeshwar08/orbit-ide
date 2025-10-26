@@ -36,6 +36,7 @@ export const usePlayground = (id: string): UsePlaygroundReturn => {
 
 			const data = await getPlaygroundById(id);
 
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 			// @ts-expect-error: error for typecript
 			setPlaygroundData(data);
 

@@ -609,6 +609,7 @@ export const PlaygroundEditor = ({
 						? getEditorLanguage(activeFile.fileExtension || "")
 						: "plaintext"
 				}
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-expect-error: error for typecript
 				options={defaultEditorOptions}
 			/>

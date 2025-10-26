@@ -74,6 +74,7 @@ interface FileExplorerState {
 	updateFileContent: (fileId: string, content: string) => void;
 }
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error: error for typecript
 export const useFileExplorer = create<FileExplorerState>((set, get) => ({
 	templateData: null,

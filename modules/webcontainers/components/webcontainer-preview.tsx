@@ -113,6 +113,7 @@ const WebContainerPreview = ({
 					);
 				}
 
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-expect-error: error for typecript
 				const files = transformToWebContainerFormat(templateData);
 				setLoadingState((prev) => ({

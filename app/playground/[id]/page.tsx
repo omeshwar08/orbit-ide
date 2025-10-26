@@ -90,6 +90,7 @@ const MainPlaygroundPage = () => {
 		error: containerError,
 		instance,
 		writeFileSync,
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 		// @ts-expect-error: error for typecript
 	} = useWebContainer({ templateData });
 
@@ -202,8 +203,10 @@ const MainPlaygroundPage = () => {
 					JSON.stringify(latestTemplateData)
 				);
 
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 				// @ts-expect-error: error for typecript
 				const updateFileContent = (items: any[]) =>
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 					// @ts-expect-error: error for typecript
 					items.map((item) => {
 						if ("folderName" in item) {

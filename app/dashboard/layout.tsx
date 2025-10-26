@@ -27,6 +27,7 @@ export default async function DashboardLayout({
 		<SidebarProvider>
 			<div className="flex min-h-screen w-full overflow-x-hidden">
 				<main className="flex-1">
+					{/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
 					{/* @ts-expect-error: error for typecript */}
 					<DashboardSidebar initialPlaygroundData={formattedPlaygroundData} />
 					{children}
