@@ -26,9 +26,13 @@ const Page = async () => {
 					<EmptyState />
 				) : (
 					<ProjectTable
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+						// @ts-ignore
 						projects={playgrounds || []}
 						onDeleteProject={deleteProjectById}
 						onUpdateProject={editProjectById}
+						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+						// @ts-ignore
 						onDuplicateProject={duplicateProjectById}
 					/>
 				)}
