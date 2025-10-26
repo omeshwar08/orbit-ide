@@ -113,7 +113,7 @@ const WebContainerPreview = ({
 					);
 				}
 
-				// @ts-expect-error
+				// @ts-expect-error: error for typecript
 				const files = transformToWebContainerFormat(templateData);
 				setLoadingState((prev) => ({
 					...prev,

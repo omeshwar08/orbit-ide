@@ -609,7 +609,7 @@ export const PlaygroundEditor = ({
 						? getEditorLanguage(activeFile.fileExtension || "")
 						: "plaintext"
 				}
-				// @ts-expect-error
+				// @ts-expect-error: error for typecript
 				options={defaultEditorOptions}
 			/>
 		</div>

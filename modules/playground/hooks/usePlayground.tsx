@@ -36,7 +36,7 @@ export const usePlayground = (id: string): UsePlaygroundReturn => {
 
 			const data = await getPlaygroundById(id);
 
-			// @ts-expect-error
+			// @ts-expect-error: error for typecript
 			setPlaygroundData(data);
 
 			const rawContent = data?.templateFiles?.[0]?.content;

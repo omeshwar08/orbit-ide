@@ -90,7 +90,7 @@ const MainPlaygroundPage = () => {
 		error: containerError,
 		instance,
 		writeFileSync,
-		// @ts-expect-error
+		// @ts-expect-error: error for typecript
 	} = useWebContainer({ templateData });
 
 	const lastSyncedContent = useRef<Map<string, string>>(new Map());
@@ -202,9 +202,9 @@ const MainPlaygroundPage = () => {
 					JSON.stringify(latestTemplateData)
 				);
 
-				// @ts-expect-error
+				// @ts-expect-error: error for typecript
 				const updateFileContent = (items: any[]) =>
-					// @ts-expect-error
+					// @ts-expect-error: error for typecript
 					items.map((item) => {
 						if ("folderName" in item) {
 							return { ...item, items: updateFileContent(item.items) };
