@@ -27,7 +27,7 @@ export default async function DashboardLayout({
 		<SidebarProvider>
 			<div className="flex min-h-screen w-full overflow-x-hidden">
 				<main className="flex-1">
-					{/* @ts-ignore */}
+					{/* @ts-expect-error */}
 					<DashboardSidebar initialPlaygroundData={formattedPlaygroundData} />
 					{children}
 				</main>
