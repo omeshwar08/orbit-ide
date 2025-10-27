@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🚀 Orbit IDE
 
-## Getting Started
+Orbit IDE is a full-stack, browser-based code editor designed to make coding accessible anywhere, instantly. It allows users to create, edit, and run code projects directly from the browser — without needing any local setup. The goal is to provide a smooth and efficient development experience with a modern UI and persistent project storage.
 
-First, run the development server:
+🔗 **Live Demo:** https://orbit-ide.vercel.app/  
+📂 **Repository:** https://github.com/omeshwar08/orbit-ide
+
+---
+
+## 🌟 Features
+
+✅ Create & manage multiple coding projects  
+✅ Web-based code editor powered by Monaco  
+✅ Real-time code execution  
+✅ Persistent storage with database support  
+✅ Clean and responsive developer-focused UI  
+✅ Secure authentication & project ownership  
+✅ Dark mode / modern styling  
+✅ Built with scalable architecture
+
+---
+
+## 🛠️ Tech Stack
+
+**Frontend**
+
+- Next.js 14 (App Router), React, TypeScript
+- Tailwind CSS + ShadCN UI
+- Monaco Editor
+
+**Backend**
+
+- Node.js
+- Prisma ORM
+- PostgreSQL Database
+
+**Authentication**
+
+- NextAuth.js
+
+**Deployment**
+
+- Vercel
+
+## 🔧 Installation & Setup
+
+To run the project locally:
 
 ```bash
+# Clone the repository
+git clone https://github.com/omeshwar08/orbit-ide.git
+
+# Navigate into the project
+cd orbit-ide
+
+# Install dependencies
+npm install
+
+# Setup environment variables
+cp .env.example .env
+# Add your DB credentials & auth configs inside .env
+
+# Push Prisma schema to database
+npx prisma db push
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
